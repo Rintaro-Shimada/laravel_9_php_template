@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   web:
-    image: nginx:1.19.9
+    image: nginx:1.21
     ports:
       - '80:80'
     depends_on:
@@ -9,11 +9,24 @@ services:
     volumes:
       - ./config/default.conf:/etc/nginx/conf.d/default.conf
       - ./nginx/:/var/www/html
+    container_name: "laravel_nginx"
+    tty: true
 
   app:
     build: ./
     volumes:
       - ./nginx/:/var/www/html
+    container_name: "laravel_php-fpm"
+    tty: true
+
+  node:
+    image: node:16.14.0
+    volumes:
+      - ./nginx/:/var/www/html
+    working_dir:  /var/www/html/
+    container_name: "laravel_node"
+    platform: "linux/arm64/v8"
+    tty: true
 
   mysql:
     image: mysql:8.0
@@ -26,3 +39,6 @@ services:
       - "3306:3306"
     volumes:
       - ./mysql/:/var/lib/mysql
+    platform: "linux/x86_64"
+    container_name: "laravel_mysql_server"
+    tty: true
