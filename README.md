@@ -1,4 +1,4 @@
-# laravel_php_template
+# laravel_9_php_template
 laravel docker 開発環境のテンプレート  
 ##  バージョン情報
 ~~~
