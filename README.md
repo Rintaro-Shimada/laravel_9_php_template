@@ -14,8 +14,6 @@ docker-compose build
 docker-compose run --rm app sh -c 'composer create-project laravel/laravel my-laravel-app'
 
 docker-compose up -d
-
-docker exec -it php-fpm bash
 ```
 
 php-fpm への入り方
